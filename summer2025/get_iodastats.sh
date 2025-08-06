@@ -23,9 +23,14 @@ while [ "$current_date" -le "$END" ]; do
     # Construct the HPSS path
     PDY=$(echo "$current_date" | cut -c1-8)  # YYYYMMDD
     cyc=$(echo "$current_date" | cut -c9-10)  # HH
+    #snow_stat="gdas.t${cyc}z.snow_iodastat.tgz"
+    snow_stat="gdas.t${cyc}z.snowstat.tgz"
     hpss_path="$HPSS_ROOT/$current_date/gdas.tar"
     # gdas.20250217/00/products/snow/anlmon/gdas.t00z.snow_iodastat.tgz
-    hpss_file="gdas.${PDY}/${cyc}/products/snow/anlmon/gdas.t${cyc}z.snow_iodastat.tgz"
+    #hpss_file="gdas.${PDY}/${cyc}/products/snow/anlmon/${snow_stat}"
+    hpss_file="gdas.${PDY}/${cyc}/analysis/snow/${snow_stat}"
+    echo "htar -xvf $hpss_path $hpss_file"
+    #htar -tvf $hpss_path
     htar -xvf $hpss_path $hpss_file
     if [ $? -ne 0 ]; then
         echo "Failed to extract $hpss_file from $hpss_path"
@@ -34,11 +39,11 @@ while [ "$current_date" -le "$END" ]; do
     fi
     # extract the stat files
     cd "$OUTDIR/gdas.${PDY}/${cyc}/products/snow/anlmon" || exit 1
-    tar -xzf "gdas.t${cyc}z.snow_iodastat.tgz"
+    tar -xzf ${snow_stat}
     if [ $? -ne 0 ]; then
-        echo "Failed to extract gdas.t${cyc}z.snow_iodastat.tgz"
+        echo "Failed to extract ${snow_stat}"
     else
-        echo "Extracted gdas.t${cyc}z.snow_iodastat.tgz to $OUTDIR/gdas.${PDY}/${cyc}/products/snow/anlmon"
+        echo "Extracted ${snow_stat} to $OUTDIR/gdas.${PDY}/${cyc}/products/snow/anlmon"
     fi
     # Move back to the output directory
     cd "$OUTDIR" || exit 1
