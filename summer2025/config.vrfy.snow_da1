@@ -39,8 +39,8 @@ export RUN_SATELLITE_STEP1="NO"
 export RUN_SATELLITE_STEP2="NO"
 export RUN_FIT2OBS_PLOTS="NO"
 export RUN_TROPCYC="NO"
-export RUN_MAPS2D="NO"
-export RUN_MAPSDA="NO"
+export RUN_MAPS2D="YES"
+export RUN_MAPSDA="YES"
 
 ####################################################
 # GENERAL SETTINGS APPLIED TO ALL USE CASES
@@ -64,7 +64,7 @@ export model_hpss_dir_list="/NCEPDEV/emc-land/1year/Youlong.Xia/HERA/scratch/atm
 export hpss_walltime="10"
 ## OUTPUT DATA SETTINGS
 #OUTPUTROOT: base output directory
-export OUTPUTROOT="/scratch3/NCEPDEV/stmp/$USER/verif_global_standalone/try14"
+export OUTPUTROOT="/scratch3/NCEPDEV/stmp/$USER/verif_global_standalone/20250804_2"
 ## DATE SETTINGS
 #start_date:          verification start date, format YYYYMMDD
 #end_date:            verification end date, format YYYYMMDD
@@ -73,7 +73,8 @@ export OUTPUTROOT="/scratch3/NCEPDEV/stmp/$USER/verif_global_standalone/try14"
 #make_met_data_by:    how to treat dates, "VALID" or "INIT"
 #plot_by:             how to plot data, "VALID" or "INIT"
 export start_date=20241025
-export end_date=20250309
+#export start_date=20250222
+export end_date=20250324
 export spinup_period_start="NA"
 export spinup_period_end="NA"
 export make_met_data_by="VALID"
